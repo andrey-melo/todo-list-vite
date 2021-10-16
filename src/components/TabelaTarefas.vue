@@ -1,37 +1,43 @@
 <template>
-    <table border="1">
-    <thead>
-      <th>Descrição</th>
-      <th>Data</th>
-      <th>Concluída</th>
-    </thead>
+  <table class="w-full text-md bd-white rounded mb-4">
     <tbody>
+      <tr class="border-b">
+        <th class="text-left p-3 px-5">Descrição</th>
+        <th class="text-left p-3 px-5">Data</th>
+        <th class="text-left p-3 px-5">Concluída</th>
+        <th></th>
+      </tr>
       <tr
-        v-for="item in tarefas"
+        v-for="(item, i) in tarefas"
         :key="item.descricao"
-        :class="{ riscado: item.concluida }"
+        :class="[
+          { riscado: item.concluida },
+          { 'bg-gray-100': i % 2 == 0 },
+          'border-b hover:bg-gray-300',
+        ]"
       >
-        <td>{{ item.descricao }}</td>
-        <td>{{ formatarData(item.data) }}</td>
-        <td><input v-model="item.concluida" type="checkbox" /></td>
+        <td class="p-3 px-5">{{ item.descricao }}</td>
+        <td class="p-3 px-5">{{ formatarData(item.data) }}</td>
+        <td class="p-3 px-5">
+          <input v-model="item.concluida" type="checkbox" />
+        </td>
       </tr>
     </tbody>
   </table>
 </template>
 
 <script>
-import moment from 'moment'
+import moment from "moment";
 
 export default {
-    props: ["tarefas"],
-        methods: {
-            formatarData(data){
-                return moment(data).format("DD/MM/yyyy")
-            }
-        }
-    }
+  props: ["tarefas"],
+  methods: {
+    formatarData(data) {
+      return moment(data).format("DD/MM/yyyy");
+    },
+  },
+};
 </script>
 
 <style>
-
 </style>
