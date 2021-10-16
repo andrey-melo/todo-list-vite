@@ -71,7 +71,7 @@ export default {
   },
   data() {
     return {
-      titulo: "Todolist Vite",
+      titulo: "Todolist Vite T35",
       tarefa: {},
       tarefas: [],
     };
